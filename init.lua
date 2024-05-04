@@ -322,6 +322,16 @@ require('lazy').setup({
           return vim.fn.executable 'make' == 1
         end,
       },
+      {
+        'stevearc/oil.nvim',
+        opts = {},
+        dependencies = { 'nvim-tree/nvim-web-devicons' },
+        config = function()
+          require('oil').setup {
+            default_file_explorer = true,
+          }
+        end,
+      },
       { 'nvim-telescope/telescope-ui-select.nvim' },
 
       -- Useful for getting pretty icons, but requires a Nerd Font.
@@ -908,6 +918,9 @@ require('lazy').setup({
     },
   },
 })
+
+-- Oil Keymaps
+vim.keymap.set('n', '-', '<CMD>Oil<CR>', { desc = 'Open parent directory' })
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
