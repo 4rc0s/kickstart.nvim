@@ -215,7 +215,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   desc = 'Highlight when yanking (copying) text',
   group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
   callback = function()
-    vim.hl.on_yank()
+    vim.highlight.on_yank()
   end,
 })
 
@@ -1012,6 +1012,20 @@ require('lazy').setup({
     },
   },
 })
+
+-- Custom indent settings
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.expandtab = true
+
+-- Function to remove trailing whitespace
+local function TrimWhitespace()
+    vim.cmd("%s/\\s\\+$//e")
+end
+
+-- // CUSTOM COMMANDS \\ --
+-- Command to call the function
+vim.api.nvim_create_user_command('TrimWhitespace', TrimWhitespace, {})
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
